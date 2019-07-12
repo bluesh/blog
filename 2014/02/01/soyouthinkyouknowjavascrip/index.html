@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>JavaScript 的核心，闭包和作用域 | ALEVEN.SH</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="tags: 闭包 作用域这篇文章源于@伯乐在线官方微博一篇文章,测试：你自认为理解了JavaScript？,原文链接这篇文章有给出.主要下面五段小代码. 1234if (!(&quot;a&quot; in window)) &amp;#123;    var a = 1;&amp;#125;alert(a); 12345   var a = 1,    b = function a(x) &amp;#123;        x &amp;amp;">
+<meta name="keywords" content="假使要我跟你再耗个十年">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 的核心，闭包和作用域">
+<meta property="og:url" content="http://yoursite.com/2014/02/01/soyouthinkyouknowjavascrip/index.html">
+<meta property="og:site_name" content="ALEVEN.SH">
+<meta property="og:description" content="tags: 闭包 作用域这篇文章源于@伯乐在线官方微博一篇文章,测试：你自认为理解了JavaScript？,原文链接这篇文章有给出.主要下面五段小代码. 1234if (!(&quot;a&quot; in window)) &amp;#123;    var a = 1;&amp;#125;alert(a); 12345   var a = 1,    b = function a(x) &amp;#123;        x &amp;amp;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-05T15:31:31.204Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 的核心，闭包和作用域">
+<meta name="twitter:description" content="tags: 闭包 作用域这篇文章源于@伯乐在线官方微博一篇文章,测试：你自认为理解了JavaScript？,原文链接这篇文章有给出.主要下面五段小代码. 1234if (!(&quot;a&quot; in window)) &amp;#123;    var a = 1;&amp;#125;alert(a); 12345   var a = 1,    b = function a(x) &amp;#123;        x &amp;amp;">
+  
+    <link rel="alternate" href="/atom.xml" title="ALEVEN.SH" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/avatar.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-61220413-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">ALEVEN.SH</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">一个酱油前端的心路历程</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="description" content="酱油前端许乐乐的博客 bluesh Aleven a Web Developer in Hangzhou Front-end 不有趣"><meta name="keyword"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>JavaScript 的核心，闭包和作用域</title><link rel="shortcut icon" href="/images/avatar.png" type="image/x-icon"><link href="/styles/site.css" rel="stylesheet"></head><body><header class="container" id="header"><div class="header"><div class="header-left"><div class="avatar"><img src="/images/avatar.png"></div><div class="author"><div class="author-name"><a href="/">GARY.SHEN</a></div><div class="about-me">Halo~</div></div></div><div class="header-right"><ul class="navigation"><li><a href="/archives">归档</a></li></ul></div><div class="about-me-mask"><div class="about-me-wrap"><div class="about-me__header"><div class="avatar"><img src="/images/avatar.png"></div></div><ul class="socials"><li class="social-item"><span class="label"><img src="/images/socials/github.svg" alt="https://github.com/gary-Shen"></span><a href="https://github.com/gary-Shen" target="_blank" title="https://github.com/gary-Shen">https://github.com/gary-Shen</a></li><li class="social-item"><span class="label"><img src="/images/socials/email.svg" alt="guanlinshen@126.com"></span><span>guanlinshen@126.com</span></li><li class="social-item"><span class="label"><img src="/images/socials/wechat.svg" alt="Grinson"></span><span>Grinson</span></li></ul></div></div></div></header><div class="container post"><section class="article"><div class="title">JavaScript 的核心，闭包和作用域</div><div class="date">写于2014年02月01日</div><div class="content"><p>tags: <code>闭包</code> <code>作用域</code><br><br><br>这篇文章源于<a href="http://e.weibo.com/jobbole?ref=http%3A%2F%2Fweibo.com%2F1581992285%2Fprofile%3Ftopnav%3D1%26wvr%3D5%231354965989570" target="_blank" rel="noopener">@伯乐在线官方微博</a>一篇文章,<a href="http://blog.jobbole.com/30468/" target="_blank" rel="noopener">测试：你自认为理解了JavaScript？</a>,原文链接这篇文章有给出.主要下面五段小代码.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!(<span class="string">"a"</span> <span class="keyword">in</span> <span class="built_in">window</span>)) &#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">alert(a);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">var</span> a = <span class="number">1</span>,</span><br><span class="line">    b = <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">        x &amp;&amp; a(--x);</span><br><span class="line">    &#125;;</span><br><span class="line">alert(a);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a;</span><br><span class="line">alert(a);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params">x, y, a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">2</span>] = <span class="number">10</span>;</span><br><span class="line">    alert(a);</span><br><span class="line">&#125;</span><br><span class="line">b(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">a.call(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+<p>参考答案(在chrome下弹出的结果,别的木有测试过):</p>
+<blockquote>
+<p>undefined,</p>
+</blockquote>
+<blockquote>
+<p>1,</p>
+</blockquote>
+<blockquote>
+<p>function a(x) { return x * 2; },</p>
+</blockquote>
+<blockquote>
+<p>10,</p>
+</blockquote>
+<blockquote>
+<p>window</p>
+</blockquote>
+<p>###下面是我的理解,以及用于理解而参考的一些资料:</p>
+<p>####题目1<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!(<span class="string">"a"</span> <span class="keyword">in</span> <span class="built_in">window</span>)) &#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">alert(a);</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>变量申明先压入栈,即顶置变量申明.var a = 1;分为变量申明和变量赋值–var a; a = 1;执行的时候才进行赋值,所以”a” in window为true,没有对a赋值,所以弹出undefined,而非报错.</li>
+<li>我多嘴说一句,if是不区分作用域的.JS中并不是{}区分变量作用范围,而是函数.</li>
+</ol>
+<p>####题目2<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">var</span> a = <span class="number">1</span>,</span><br><span class="line">    b = <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">        x &amp;&amp; a(--x);</span><br><span class="line">    &#125;;</span><br><span class="line">alert(a);</span><br></pre></td></tr></table></figure></p>
+<p>我认为很简单,a(x)只是一个代号而已,不是变量,所以跟var a = 1一点关系没有,它可以是b(x),c(x).弹出的a始终为1.</p>
+<p>如果把b改成a就不一样了.</p>
+<p>####题目3<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a;</span><br><span class="line">alert(a);</span><br></pre></td></tr></table></figure></p>
+<p>函数申明,然后是变量申明.由于变量没有赋值,那a没有被覆盖.输出的是函数体.JS中变量是随时可以被改变,但这应该局限于执行的时候.</p>
+<p>####题目4<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params">x, y, a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">2</span>] = <span class="number">10</span>;</span><br><span class="line">    alert(a);</span><br><span class="line">&#125;</span><br><span class="line">b(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure></p>
+<p>arguments[2] = 10;就是改变a了,好像没有什么好解释了.</p>
+<p>####题目5<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">a.call(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure></p>
+<p>这个翻译过上一次的<a href="http://coffeexu.github.io/blog/2013/10/15/javascript-function-invocation-patterns" target="_blank" rel="noopener">文章</a>,好像也很简单.this指向call函数第一个参数(这里为null).根据ECMAScript262规范规定：如果第一个参数传入的对象调用者是null或者undefined的话，call方法将把全局对象（也就是window）作为this的值.</p>
+<p>此处再总结下this.</p>
+<ol>
+<li><p>对于obj.fun()此类方法函数调用,哪个<code>对象实例</code>(obj)调用this所在的函数(fun),this指向那个<code>对象实例</code></p>
+</li>
+<li><p>对于函数调用,this指向全局对象.(其实可以看做上一种,是window对象的方法函数,全局对象调用,则指向全局对象)</p>
+</li>
+<li><p>对于构造函数调用,若该函数返回一个简单类型（number, string, boolean, null or undefined），忽略return值，返回this（指向新的对象）;如果该函数返回一个object实例（简单类型以外的任何类型），那么将返回该对象。</p>
+</li>
+<li><p>apply和call调用,this指向apply和call第一参数.即手动设置this的值.</p>
+</li>
+</ol>
+</div><div class="tags"><a class="tag-link" href="/blog/tags/假使要我跟你再耗个十年/">假使要我跟你再耗个十年</a></div></section></div><div class="container"><ul class="nav"><li>上一篇：<a href="/blog/2014/03/01/bangkok-and-pattaya/">等啊等等过了夏天 － 泰国游记</a></li><li>下一篇：<a href="/blog/2014/01/04/ie-inherited-margin-bug/">IE inherited margin bug - form elements and hasLayout</a></li></ul></div><div id="backToTop"><div class="back-arrow back-arrow-left"></div><div class="back-arrow back-arrow-right"></div></div><footer class="container"><div class="rights"><span>Powered by </span><a href="http://hexo.io" target="_blank">Hexo</a><span>, Theme </span><a href="https://github.com/gary-Shen/hexo-theme-curry" target="_blank">Curry</a><span>.</span></div></footer><script src="/blog/script/jquery.min.js"></script><link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css"><script src="/blog/fancybox/jquery.fancybox.pack.js"></script><script src="/blog/script/index.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-61220413-1', 'auto');
+ga('send', 'pageview');</script><script src="/blog/script/jquery.min.js"></script><link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css"><script src="/blog/fancybox/jquery.fancybox.pack.js"></script><script src="/blog/script/index.js"></script><script src="/blog/script/post.js"></script></body></html></section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 ALEVEN.SH<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

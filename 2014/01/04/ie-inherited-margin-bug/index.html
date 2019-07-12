@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>IE inherited margin bug - form elements and hasLayout | ALEVEN.SH</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="tags: IE 表单 兼容总是要切换浏览器的“浏览器模式”和“文档模式”，来测试下IE浏览器是否显示正常，这两种模式的排列组合的情况总是搞不清相互有什么关系，先mark下——浏览器模式影响的是浏览器的版本及IE的条件注释，会影响服务器端对浏览器版本的判断,主要表现在展现，对CSS影响很大。文档模式影响的是IE的排版引擎，对DOM的渲染会产生影响。 hasLayout这个IE的特有属性已经很熟悉了">
+<meta name="keywords" content="假使要我跟你再耗个十年">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IE inherited margin bug - form elements and hasLayout">
+<meta property="og:url" content="http://yoursite.com/2014/01/04/ie-inherited-margin-bug/index.html">
+<meta property="og:site_name" content="ALEVEN.SH">
+<meta property="og:description" content="tags: IE 表单 兼容总是要切换浏览器的“浏览器模式”和“文档模式”，来测试下IE浏览器是否显示正常，这两种模式的排列组合的情况总是搞不清相互有什么关系，先mark下——浏览器模式影响的是浏览器的版本及IE的条件注释，会影响服务器端对浏览器版本的判断,主要表现在展现，对CSS影响很大。文档模式影响的是IE的排版引擎，对DOM的渲染会产生影响。 hasLayout这个IE的特有属性已经很熟悉了">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-05T15:31:31.201Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IE inherited margin bug - form elements and hasLayout">
+<meta name="twitter:description" content="tags: IE 表单 兼容总是要切换浏览器的“浏览器模式”和“文档模式”，来测试下IE浏览器是否显示正常，这两种模式的排列组合的情况总是搞不清相互有什么关系，先mark下——浏览器模式影响的是浏览器的版本及IE的条件注释，会影响服务器端对浏览器版本的判断,主要表现在展现，对CSS影响很大。文档模式影响的是IE的排版引擎，对DOM的渲染会产生影响。 hasLayout这个IE的特有属性已经很熟悉了">
+  
+    <link rel="alternate" href="/atom.xml" title="ALEVEN.SH" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/avatar.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-61220413-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">ALEVEN.SH</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">一个酱油前端的心路历程</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="description" content="酱油前端许乐乐的博客 bluesh Aleven a Web Developer in Hangzhou Front-end 不有趣"><meta name="keyword"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>IE inherited margin bug - form elements and hasLayout</title><link rel="shortcut icon" href="/images/avatar.png" type="image/x-icon"><link href="/styles/site.css" rel="stylesheet"></head><body><header class="container" id="header"><div class="header"><div class="header-left"><div class="avatar"><img src="/images/avatar.png"></div><div class="author"><div class="author-name"><a href="/">GARY.SHEN</a></div><div class="about-me">Halo~</div></div></div><div class="header-right"><ul class="navigation"><li><a href="/archives">归档</a></li></ul></div><div class="about-me-mask"><div class="about-me-wrap"><div class="about-me__header"><div class="avatar"><img src="/images/avatar.png"></div></div><ul class="socials"><li class="social-item"><span class="label"><img src="/images/socials/github.svg" alt="https://github.com/gary-Shen"></span><a href="https://github.com/gary-Shen" target="_blank" title="https://github.com/gary-Shen">https://github.com/gary-Shen</a></li><li class="social-item"><span class="label"><img src="/images/socials/email.svg" alt="guanlinshen@126.com"></span><span>guanlinshen@126.com</span></li><li class="social-item"><span class="label"><img src="/images/socials/wechat.svg" alt="Grinson"></span><span>Grinson</span></li></ul></div></div></div></header><div class="container post"><section class="article"><div class="title">IE inherited margin bug - form elements and hasLayout</div><div class="date">写于2014年01月04日</div><div class="content"><p>tags: <code>IE</code> <code>表单</code> <code>兼容</code><br><br><br>总是要切换浏览器的“浏览器模式”和“文档模式”，来测试下IE浏览器是否显示正常，这两种模式的排列组合的情况总是搞不清相互有什么关系，先mark下——<br><br><code>浏览器模式</code>影响的是浏览器的版本及IE的条件注释，会影响服务器端对浏览器版本的判断,主要表现在展现，对CSS影响很大。<br><br><code>文档模式</code>影响的是IE的排版引擎，对DOM的渲染会产生影响。</p>
+<p>hasLayout这个IE的特有属性已经很熟悉了，平常都是需要激发hasLayout来解决很多渲染的问题，这次遇到一个因为hasLayout=true造成的IE兼容性问题。<br><br>问题代码演示：<a href="http://jsbin.com/oZeYOve/1/edit" target="_blank" rel="noopener">http://jsbin.com/oZeYOve/1/edit</a> <br><br>问题描述：input属性继承了父类的margin值，导致input左边的距离不受控制（事实上右边也会有问题）。也就是说input会继承父类水平方向的margin值，叠加到自身。IE7及以下浏览器会出现这个问题。</p>
+<p>但是，出现该bug的前提是父类是一个被激活了hasLayout的元素。该例子中如果去掉div#search-box的width和height，问题可以被修复。或者将form元素包含到div#search-box元素内。但肯定要遇到“臣妾做不到啊”的情况。<br><br>解决办法：<br><br>1.CSS hack，给input设置margin负值，用来抵消继承下来的父类margin值。<br><br>2.删除父类的margin值。<br><br>3.取消父类的hasLayout属性。<br><br>4.在input元素之前放文本元素，或者label元素，或者任何的行元素。<br><br>5.用span元素把input包起来。</p>
+<p>另外我其实遇到过另一个奇葩的问题，input的左边距坍塌。浏览器查看样式点来点去的时候，左边距生效，静止的时候，左边距又退回去了！因为项目中这个页面去掉了，也没办法重现，不知道是哪里的起了冲突。还是先mark</p>
+<p>参考资料:[1]<a href="http://www.positioniseverything.net/explorer/inherited_margin.html" target="_blank" rel="noopener">http://www.positioniseverything.net/explorer/inherited_margin.html</a></p>
+</div><div class="tags"><a class="tag-link" href="/blog/tags/假使要我跟你再耗个十年/">假使要我跟你再耗个十年</a></div></section></div><div class="container"><ul class="nav"><li>上一篇：<a href="/blog/2014/02/01/soyouthinkyouknowjavascrip/">JavaScript 的核心，闭包和作用域</a></li><li>下一篇：<a href="/blog/2014/01/04/images-map/">图片的map锚点</a></li></ul></div><div id="backToTop"><div class="back-arrow back-arrow-left"></div><div class="back-arrow back-arrow-right"></div></div><footer class="container"><div class="rights"><span>Powered by </span><a href="http://hexo.io" target="_blank">Hexo</a><span>, Theme </span><a href="https://github.com/gary-Shen/hexo-theme-curry" target="_blank">Curry</a><span>.</span></div></footer><script src="/blog/script/jquery.min.js"></script><link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css"><script src="/blog/fancybox/jquery.fancybox.pack.js"></script><script src="/blog/script/index.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-61220413-1', 'auto');
+ga('send', 'pageview');</script><script src="/blog/script/jquery.min.js"></script><link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css"><script src="/blog/fancybox/jquery.fancybox.pack.js"></script><script src="/blog/script/index.js"></script><script src="/blog/script/post.js"></script></body></html></section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 ALEVEN.SH<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

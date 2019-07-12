@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>讲一讲CSS的position/float/display | ALEVEN.SH</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="tags: CSS position float display ###position  position属性取值：static(默认)、relative、absolute、fixed、inherit。  postision：static；始终处于文档流给予的位置。看起来好像没有用，但它可以快速取消定位，让top，right，bottom，left的值失效。在切换的时候可以尝试这个方法。  除了">
+<meta name="keywords" content="假使要我跟你再耗个十年">
+<meta property="og:type" content="article">
+<meta property="og:title" content="讲一讲CSS的position&#x2F;float&#x2F;display">
+<meta property="og:url" content="http://yoursite.com/2013/10/30/css-position-float-display/index.html">
+<meta property="og:site_name" content="ALEVEN.SH">
+<meta property="og:description" content="tags: CSS position float display ###position  position属性取值：static(默认)、relative、absolute、fixed、inherit。  postision：static；始终处于文档流给予的位置。看起来好像没有用，但它可以快速取消定位，让top，right，bottom，left的值失效。在切换的时候可以尝试这个方法。  除了">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-05T15:31:31.199Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="讲一讲CSS的position&#x2F;float&#x2F;display">
+<meta name="twitter:description" content="tags: CSS position float display ###position  position属性取值：static(默认)、relative、absolute、fixed、inherit。  postision：static；始终处于文档流给予的位置。看起来好像没有用，但它可以快速取消定位，让top，right，bottom，left的值失效。在切换的时候可以尝试这个方法。  除了">
+  
+    <link rel="alternate" href="/atom.xml" title="ALEVEN.SH" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/avatar.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-61220413-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">ALEVEN.SH</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">一个酱油前端的心路历程</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="description" content="酱油前端许乐乐的博客 bluesh Aleven a Web Developer in Hangzhou Front-end 不有趣"><meta name="keyword"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>讲一讲CSS的position/float/display</title><link rel="shortcut icon" href="/images/avatar.png" type="image/x-icon"><link href="/styles/site.css" rel="stylesheet"></head><body><header class="container" id="header"><div class="header"><div class="header-left"><div class="avatar"><img src="/images/avatar.png"></div><div class="author"><div class="author-name"><a href="/">GARY.SHEN</a></div><div class="about-me">Halo~</div></div></div><div class="header-right"><ul class="navigation"><li><a href="/archives">归档</a></li></ul></div><div class="about-me-mask"><div class="about-me-wrap"><div class="about-me__header"><div class="avatar"><img src="/images/avatar.png"></div></div><ul class="socials"><li class="social-item"><span class="label"><img src="/images/socials/github.svg" alt="https://github.com/gary-Shen"></span><a href="https://github.com/gary-Shen" target="_blank" title="https://github.com/gary-Shen">https://github.com/gary-Shen</a></li><li class="social-item"><span class="label"><img src="/images/socials/email.svg" alt="guanlinshen@126.com"></span><span>guanlinshen@126.com</span></li><li class="social-item"><span class="label"><img src="/images/socials/wechat.svg" alt="Grinson"></span><span>Grinson</span></li></ul></div></div></div></header><div class="container post"><section class="article"><div class="title">讲一讲CSS的position/float/display</div><div class="date">写于2013年10月30日</div><div class="content"><p>tags: <code>CSS</code> <code>position</code> <code>float</code> <code>display</code><br><br></p>
+<p>###position</p>
+<ol>
+<li><p>position属性取值：static(默认)、relative、absolute、fixed、inherit。</p>
+</li>
+<li><p>postision：static；始终处于文档流给予的位置。看起来好像没有用，但它可以快速取消定位，让top，right，bottom，left的值失效。在切换的时候可以尝试这个方法。</p>
+</li>
+<li>除了static值，在其他三个值的设置下，z-index才会起作用。（确切地说z-index只在定位元素上有效）</li>
+<li>position：relative和absolute都可以用于定位，区别在于前者的div还属于正常的文档流，后者已经是脱离了正常文档流，不占据空间位置，不会将父类撑开。定位原点relative是相对于它在正常流中的默认位置偏移，它原本占据的空间任然保留；absolute相对于第一个position属性值不为static的父类。所以设置了position：absolute，其父类的该属性值要注意，而且overflow：hidden也不能乱设置，因为不属于正常文档流，不会占据父类的高度，也就不会有滚动条。</li>
+<li>fixed旧版本IE不支持，却是很有用，定位原点相对于浏览器窗口，而且不能变。常用于header，footer，或者一些固定的悬浮div，随滚动条滚动又稳定又流畅，比JS好多了。fixed可以有很多创造性的布局和作用，兼容性是问题。</li>
+<li>position：inherit。规定从父类继承position属性的值，所以这个属性也是有继承性的。</li>
+</ol>
+<p>###float</p>
+<ol>
+<li>float属性取值：none(默认)、left、right、inherit。</li>
+<li>float：left(或right)，向左（或右）浮动，直到它的边缘碰到包含框或另一个浮动框为止。且脱离普通的文档流，会被正常文档流内的块框忽略。不占据空间，无法将父类元素撑开。</li>
+<li>任何元素都可以浮动，浮动元素会生成一个块级框，不论它本身是何种元素。因此，没有必要为浮动元素设置display：block。</li>
+<li>如果浮动非替换元素，则要指定一个明确的width，否则它们会尽可能的窄。（什么叫替换元素？根据元素本身的特点定义的， (X)HTML中的img、input、textarea、select、object都是替换元素，这些元素都没有实际的内容。 (X)HTML 的大多数元素是不可替换元素，他们将内容直接告诉浏览器，将其显示出来。）</li>
+</ol>
+<p>####清浮</p>
+<ol>
+<li>最直接的clear属性，该属性表示的是框的哪边不应该挨着浮动框。这个属性是对元素本身而言，通过自动为该元素增加上外边距实现的（css1和css2），或者在上外边距之上增加清除空间，而外边距本身不改变的方式（css2.1）。clear的缺陷是可能要添加额外无意义的标签。</li>
+<li>通过父类的浮动也可以清理子类浮动，将空间撑开。这有点像负负得正。但原理应该是浮动的元素也是按照文档流的方式布局，只不过它们是另外一个独立的文档流，不同于普通文档流，暂时叫它浮动文档流？</li>
+<li>hasLayout和BFC都可以清理浮动。overflow：hidden；zoom:1；hasLayout跟BFC不同之处，前者被限制为一个矩形，可以设置宽高，但BFC不一定可以设置宽高（比如行内元素）。</li>
+</ol>
+<p>###display</p>
+<ol>
+<li>display属性取值：none、inline、inline-block、block、table相关属性值、inherit以及list-item, run-in等</li>
+<li>display属性规定元素应该生成的框的类型。文档内任何元素都是框，块框或行内框。</li>
+<li>display：none和visiability：hidden都可以隐藏div，区别有点像absolute和relative，前者不占据文档的空间，后者还是占据文档的位置。</li>
+<li>display：inline和block，又叫行内元素和块级元素。表现出来的区别就是block独占一行，在浏览器中通常垂直布局，可以用margin来控制块级元素之间的间距（存在margin合并的问题，就是@ 寒冬winter 磨叽的margin collapse么- -||，插一句， 只有普通文档流中块框的垂直外边距才会发生外边距合并。行内框、浮动框或绝对定位之间的外边距不会合并。）；而inline以水平方式布局，垂直方向的margin和padding都是无效的，大小跟内容一样，且无法设置宽高。inline就像塑料袋，内容怎么样，就长得怎么样；block就像盒子，有固定的宽和高。</li>
+<li>inline-block就介于两者之间。inline-block行内块元素。内容被格式化为块元素，而元素本身是一个行内元素。可以设置宽高，又默认不换行特性。IE表现出来的效果不一样，所以需要激发hasLayout，所以就产生了这么一串代码{display:inline-block;<em>display:inline; </em>zoom:1;}。但是不一定要这么累赘，因为还有其他值也可以激发hasLayout，比如height/width。inline-block跟float可以达到同样的布局效果。效果哪个好不好说，前者不会打破文档正常的定位机制，后者就脱离了正常的文档流。完全看具体布局情况选择。另外，激发hasLayout之后的并且设置display：inline的元素，跟普通文字一样按水平方向排列，受vertical-align的影响，并且可以按照容器大小自适应调整。</li>
+<li>table相关的属性值可以用来垂直居中，效果一般。</li>
+</ol>
+<p>###定位机制</p>
+<ol>
+<li>上面三个属性都属于CSS定位属性。CSS三种基本的定位机制：普通流、浮动、绝对定位。</li>
+</ol>
+<p>####随便扯一些居中布局：</p>
+<ul>
+<li>宽高固定可以利用负margin。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.center&#123;top：50%;margin-top:-height/2;left:50%;margin-left:-width/2;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>宽高不固定的元素。.center{display：inline-block},父类设置{text-align:center}</p>
+</li>
+<li><p>垂直居中table-cell不说了</p>
+</li>
+<li><p>{line-height：height;vertical-align:middle;}</p>
+</li>
+<li><p>{position:absolute;top:0;bottom:0;margin:auto}别忘记给父类定位{position:relative;}</p>
+</li>
+</ul>
+</div><div class="tags"><a class="tag-link" href="/blog/tags/假使要我跟你再耗个十年/">假使要我跟你再耗个十年</a></div></section></div><div class="container"><ul class="nav"><li>上一篇：<a href="/blog/2013/11/06/its-a-story/">我本来想说一个故事</a></li><li>下一篇：<a href="/blog/2013/10/27/just-do-it/">去做，才有困难可言</a></li></ul></div><div id="backToTop"><div class="back-arrow back-arrow-left"></div><div class="back-arrow back-arrow-right"></div></div><footer class="container"><div class="rights"><span>Powered by </span><a href="http://hexo.io" target="_blank">Hexo</a><span>, Theme </span><a href="https://github.com/gary-Shen/hexo-theme-curry" target="_blank">Curry</a><span>.</span></div></footer><script src="/blog/script/jquery.min.js"></script><link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css"><script src="/blog/fancybox/jquery.fancybox.pack.js"></script><script src="/blog/script/index.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-61220413-1', 'auto');
+ga('send', 'pageview');</script><script src="/blog/script/jquery.min.js"></script><link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css"><script src="/blog/fancybox/jquery.fancybox.pack.js"></script><script src="/blog/script/index.js"></script><script src="/blog/script/post.js"></script></body></html></section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 ALEVEN.SH<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>
