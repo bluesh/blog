@@ -1,3 +1,4 @@
+# yuque-hexo sync
 git add .
 git commit -m 'update source'
 git push origin master:source
