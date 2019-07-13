@@ -145,7 +145,6 @@ body {
   font-family: -apple-system, "Avenir-light", "AvenirLTStd-Light", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   line-height: 1.6rem;
-  padding-top: 7.428571428571429rem;
 }
 a {
   position: relative;
@@ -164,7 +163,7 @@ a:hover {
   z-index: 999;
   bottom: 2.285714285714286rem;
   left: 50%;
-  margin-left: 26.285714285714285rem;
+  margin-left: 21.285714285714285rem;
   background-color: #fbfbfb;
   width: 2.285714285714286rem;
   height: 2.285714285714286rem;
@@ -232,7 +231,7 @@ a:hover {
   transform: rotate(-30deg) translate(2px, 0px);
 }
 .container {
-  width: 48rem;
+  width: 38rem;
   margin: 0 auto;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -244,17 +243,8 @@ a:hover {
     padding: 0 1rem;
   }
 }
-#header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: #f0f0f0;
-  z-index: 1;
-  height: 7.428571428571429rem;
-}
 .header {
-  padding: 2.285714285714286rem 0 1.142857142857143rem 0;
+  padding: 2.285714285714286rem 0;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -343,7 +333,7 @@ a:hover {
 }
 .navigation li {
   float: left;
-  margin-left: 0.5rem;
+  margin-left: 2rem;
 }
 .navigation li a {
   color: #a0a0a0;
@@ -443,74 +433,6 @@ footer a {
   width: 100%;
   height: 100%;
 }
-.coffee-mask {
-  position: fixed;
-  background-color: rgba(255,255,255,0.48);
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 100%;
-  z-index: 1000;
-  display: none;
-}
-.coffee-mask.open {
-  display: block;
-}
-.coffee-wrap {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -moz-box-orient: vertical;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-  width: 38rem;
-  margin: 10rem auto;
-  padding: 2.285714285714286rem 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-color: #fbfbfb;
-  border: 1px solid #d0d0d0;
-  border-radius: 6px;
-  -webkit-box-shadow: 0px 10px 20px rgba(0,0,0,0.07);
-  box-shadow: 0px 10px 20px rgba(0,0,0,0.07);
-}
-@media screen and (max-width: 479px) {
-  .coffee-wrap {
-    width: auto;
-    margin: 10rem 1rem;
-  }
-}
-.getcoffee {
-  text-align: center;
-}
-.getcoffee span {
-  width: 50%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  display: inline-block;
-  padding: 0 2rem;
-}
-.getcoffee img {
-  max-width: 100%;
-}
 .post {
   padding: 0;
 }
@@ -523,12 +445,13 @@ footer a {
 }
 .article {
   background-color: #fbfbfb;
-  padding: 1.485714285714286rem;
+  padding: 1.828571428571429rem;
   position: relative;
   margin-bottom: 4.571428571428571rem;
 }
 @media screen and (max-width: 479px) {
   .article {
+    padding: 2.285714285714286rem;
     line-height: 2rem;
   }
 }
@@ -546,8 +469,6 @@ footer a {
 .article img {
   max-width: 100%;
   display: block;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 .article s,
 .article strike,
@@ -780,9 +701,6 @@ footer a {
 .tag-link:last-child {
   margin-right: 0;
 }
-.tag-link:last-child:before {
-  display: none;
-}
 .tag-link:hover {
   color: #fff;
 }
@@ -902,7 +820,8 @@ footer a {
 }
 .article code {
   color: #333;
-  background-color: rgba(27,31,35,0.05);
+  background-color: #fff;
+  border: 1px #d8d8d8 solid;
   font-size: 12px;
 }
 .article blockquote {
@@ -936,7 +855,7 @@ footer a {
   font-family: "fira mono", Consolas, Menlo, Consolas, monospace;
 }
 .article code {
-  padding: 0.3em 0.4em;
+  padding: 0.3em 0.5em;
   margin: 0 0.2em;
   border-radius: 2px;
 }

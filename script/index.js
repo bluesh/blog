@@ -46,7 +46,6 @@
   // Avatar
   var $mask = $('.about-me-mask');
   $('.avatar').on('click', function () {
-    ga('send', 'event', 'AboutMe', 'aboutMe');
     if (!$mask.hasClass('open')) {
       $mask.addClass('open');
     }
@@ -55,21 +54,6 @@
   $mask.on('click', function (e) {
     if (e.target.classList.contains('about-me-mask')) {
       $mask.removeClass('open');
-    }
-  });
-
-  // Coffee
-  var $coffeeMask = $('.coffee-mask');
-  $('.coffee').on('click', function () {
-    ga('send', 'event', 'GetCoffee', 'getCoffee');
-    if (!$coffeeMask.hasClass('open')) {
-      $coffeeMask.addClass('open');
-    }
-  });
-
-  $coffeeMask.on('click', function (e) {
-    if (e.target.classList.contains('coffee-mask')) {
-      $coffeeMask.removeClass('open');
     }
   });
 
