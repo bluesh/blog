@@ -67,3 +67,5 @@ tags: 阅
 
 
 ref：[https://www.wired.com/story/future-book-is-here-but-not-what-we-expected/?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website](https://www.wired.com/story/future-book-is-here-but-not-what-we-expected/?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website)
+
+![欢迎关注公众号：今天过得真开心](https://cdn.nlark.com/yuque/0/2019/jpeg/124911/1563560576436-005ac633-aaf1-4373-a54b-3bc4f3cbced8.jpeg#align=left&display=inline&height=430&name=qrcode_happyissad_1.jpg&originHeight=430&originWidth=430&size=39990&status=done&width=430)
